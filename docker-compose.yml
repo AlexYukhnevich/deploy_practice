@@ -12,10 +12,15 @@ services:
     ports:
       - "5432:5432"
     restart: always 
-    networks:
-      - postgresql
+  client:
+    build: "./client"
+    ports: 
+      - "4000:4000"
+  # gateway: 
+  #   build: "./server/gateway"
+
   auth:
-    build: "./services/auth"
+    build: "./server/auth"
     restart: always
     ports: 
       - "3000:3000"
@@ -28,11 +33,11 @@ services:
       MAIL_NAME: Test Task Notifications
       MAIL_SECRET: secret-mail
       SMTP_USERNAME: test.acc0unt.sendmail@gmail.com
-      SMTP_PASSWORD: ~h4r5$3pfvE
+      SMTP_PASSWORD: test_pass_for_sending
       SMTP_HOST: smtp.gmail.com
       SMTP_PORT: 587
   projects:
-    build: "./services/projects"
+    build: "./server/projects"
     restart: always
     ports: 
       - "3001:3001"
@@ -41,6 +46,7 @@ services:
       JWT_SECRET_REFRESH: token_refresh
       JWT_EXPIRES_IN: 60400000
       JWT_REFRESH_EXPIRES_IN: 864000000
+  
   web:
     image: nginx
     depends_on:
