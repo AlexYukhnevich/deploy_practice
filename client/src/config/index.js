@@ -54,6 +54,7 @@ export const ALLOWED_VALUES_FOR_SORT = [
 export const BASE_URL = 'http://localhost:8080';
 
 // prefixers
+export const API = '/api';
 export const PROJECT_PREFIX = '/projects';
 export const AUTH_PREFIX = '/auth';
 

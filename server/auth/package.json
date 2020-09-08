@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node ./build/server.js && NODE_ENV=production",
+    "start": "node ./build/server.js && NODE_ENV=production",
     "dev": "cross-env PORT=3000 NODE_ENV=development tsc-watch --onSuccess \"node ./build/server.js\"",
     "build": "tsc"
   },

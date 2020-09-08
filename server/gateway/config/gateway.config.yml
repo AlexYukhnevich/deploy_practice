@@ -9,7 +9,7 @@ apiEndpoints:
     path: '/auth*'
   projects:
     host: localhost
-    path: '/projects*'
+    path: '/api*'
 serviceEndpoints:
   auth:
     url: 'http://localhost:3000'

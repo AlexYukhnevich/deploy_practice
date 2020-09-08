@@ -21,58 +21,59 @@ import {
 } from '../validation';
 
 const projectPrefix = "/projects";
+const apiPrefix = '/api';
 
 export default [
   {
-    path: `${projectPrefix}/my`,
+    path: `${apiPrefix}${projectPrefix}/my`,
     method: "GET",
     validations: [],
     handler: getMy,
   },
   {
-    path: `${projectPrefix}/acquired`,
+    path: `${apiPrefix}${projectPrefix}/acquired`,
     method: "GET",
     validations: [],
     handler: getAcquired,
   },
   {
-    path: `${projectPrefix}/saved`,
+    path: `${apiPrefix}${projectPrefix}/saved`,
     method: "GET",
     validations: [],
     handler: getSaved,
   },
   {
-    path: `${projectPrefix}/search`,
+    path: `${apiPrefix}${projectPrefix}/search`,
     method: "GET",
     validations: searchProjectValidationRules,
     handler: search,
   },
   {
-    path: `${projectPrefix}/sort`,
+    path: `${apiPrefix}${projectPrefix}/sort`,
     method: "GET",
     validations: sortProjectValidationRules,
     handler: sort,
   },
   {
-    path: `${projectPrefix}/`,
+    path: `${apiPrefix}${projectPrefix}/`,
     method: "GET",
     validations: [],
     handler: get,
   },
   {
-    path: `${projectPrefix}/:id`,
+    path: `${apiPrefix}${projectPrefix}/:id`,
     method: "PUT",
     validations: updateProjectValidationRules,
     handler: update,
   },
   {
-    path: `${projectPrefix}/`,
+    path: `${apiPrefix}${projectPrefix}/`,
     method: "POST",
     validations: addProjectValidationRules,
     handler: add,
   },
   {
-    path: `${projectPrefix}/:id`,
+    path: `${apiPrefix}${projectPrefix}/:id`,
     method: "DELETE",
     validations: removeProjectValidationRules,
     handler: remove,

@@ -1,6 +1,6 @@
 FROM node:alpine
-WORKDIR /usr/app/gateway
-COPY . .
+WORKDIR /app
+COPY . /app
 RUN yarn install
 EXPOSE 8080
 CMD ["yarn", "start"]

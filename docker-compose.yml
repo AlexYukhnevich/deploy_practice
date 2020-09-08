@@ -15,15 +15,21 @@ services:
   client:
     build: "./client"
     ports: 
-      - "4000:4000"
-  # gateway: 
-  #   build: "./server/gateway"
-
+      - "80:80"
+  gateway: 
+    build: "./server/gateway"
+    ports: 
+      - "8080:8080"
+    depends_on: 
+      - auth
+      - projects
   auth:
     build: "./server/auth"
     restart: always
     ports: 
       - "3000:3000"
+    depends_on: 
+      - db
     environment: 
       JWT_SECRET: test_task
       JWT_SECRET_REFRESH: token_refresh
@@ -38,7 +44,6 @@ services:
       SMTP_PORT: 587
   projects:
     build: "./server/projects"
-    restart: always
     ports: 
       - "3001:3001"
     environment:
@@ -46,10 +51,6 @@ services:
       JWT_SECRET_REFRESH: token_refresh
       JWT_EXPIRES_IN: 60400000
       JWT_REFRESH_EXPIRES_IN: 864000000
-  
-  web:
-    image: nginx
-    depends_on:
+    depends_on: 
       - db
-    ports:
-      - "8080:80"
+      - auth

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Api from '../api';
-import { BASE_URL, PROJECT_PREFIX } from '../../config';
+import { BASE_URL, PROJECT_PREFIX, API } from '../../config';
 
 class ProjectApi extends Api {
   constructor(url) {
@@ -49,4 +49,4 @@ class ProjectApi extends Api {
   }
 }
 
-export default new ProjectApi(`${BASE_URL}${PROJECT_PREFIX}`);
+export default new ProjectApi(`${BASE_URL}${API}${PROJECT_PREFIX}`);
