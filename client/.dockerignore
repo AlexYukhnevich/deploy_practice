@@ -1,8 +1,7 @@
 .git/
-.gitignore
-.next/                
+.gitignore               
 .dockerignore
+.editorconfig
 Dockerfile
-docker-compose.yml
 node_modules/        
-nginx/
+.nginx/

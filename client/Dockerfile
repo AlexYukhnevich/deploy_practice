@@ -1,11 +1,13 @@
-FROM node:alpine as build
+FROM node:alpine as build-stage
 WORKDIR /app
 COPY . /app
 RUN yarn install
+ENV IP_ADDRESS $IP_ADDRESS
 RUN yarn build
 
-FROM nginx:latest
-COPY --from=build /app/build /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d
+FROM nginx:alpine
+COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=build-stage /app/build /usr/share/nginx/html
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

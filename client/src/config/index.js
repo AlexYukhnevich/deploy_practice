@@ -33,9 +33,11 @@ export const SPECIAL_CHARACTERS = [
   "}",
   "~",
 ];
-// export const PASSWORD_MIN_LENGTH = 8;
-// export const MAX_NAME_LENGTH = 15;
-// export const MAX_NUMBER_LENGTH = 12;
+
+const BACKEND_URL = {
+  dev:`http://localhost:8080`,
+  prod: `http://${process.env.IP_ADDRESS}:${process.env.BACKEND_PORT}`
+}
 
 // allowed column fields for sorting
 export const ALLOWED_VALUES_FOR_SORT = [
@@ -51,7 +53,9 @@ export const ALLOWED_VALUES_FOR_SORT = [
 ];
 
 // backend endpoint
-export const BASE_URL = 'http://localhost:8080';
+// export const BASE_URL = 'http://localhost:8080';
+export const BASE_URL = BACKEND_URL[process.env.REACT_APP_STAGE] ? 
+BACKEND_URL[process.env.REACT_APP_STAGE] : BACKEND_URL.development;
 
 // prefixers
 export const API = '/api';
