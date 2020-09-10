@@ -1,4 +1,4 @@
-import { normalizeDate } from '../utils'; 
+import { formatDate } from '../utils'; 
 
 export const normalizeProject = (project) => {
   const { 
@@ -23,8 +23,8 @@ export const normalizeProject = (project) => {
     price,
     provider,
     complicity,
-    start_date: normalizeDate(start_date),
-    deadline: normalizeDate(deadline),
+    start_date: formatDate(start_date),
+    deadline: formatDate(deadline),
     offers,
     drafted,
     userId

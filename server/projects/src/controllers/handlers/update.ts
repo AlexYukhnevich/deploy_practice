@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { updateProject } from '../actions';
 import { normalizeValue } from '../../normalize';
-import { concate } from '../../utils';
+import { concate, changeFormatDate } from '../../utils';
 
 export const update = async (req: Request, res: Response) => {
   const { id: projectId } = req.params;
@@ -30,8 +30,8 @@ export const update = async (req: Request, res: Response) => {
     price, 
     provider, 
     complicity, 
-    start_date, 
-    deadline, 
+    start_date: changeFormatDate(start_date), 
+    deadline: changeFormatDate(deadline), 
     offers
   });
   

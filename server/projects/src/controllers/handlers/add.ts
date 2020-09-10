@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { addProject } from '../actions';
 import { normalizeProject, normalizeValue } from '../../normalize';
 import { concate } from '../../utils';
-
+import { changeFormatDate } from '../../utils';
 
 export const add = async (req: Request, res: Response) => {
   try {
@@ -24,7 +24,7 @@ export const add = async (req: Request, res: Response) => {
     const normalizedOffers = normalizeValue(offers);
     const normalizedResources = normalizeValue(resources);
     const normalizedComplicity = normalizeValue(complicity);
-
+ 
     const searchValue = concate({
       name, 
       status, 
@@ -32,8 +32,8 @@ export const add = async (req: Request, res: Response) => {
       price, 
       provider, 
       complicity, 
-      start_date, 
-      deadline, 
+      start_date: changeFormatDate(start_date), 
+      deadline: changeFormatDate(deadline), 
       offers,
     });
 

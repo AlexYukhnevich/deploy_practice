@@ -60,7 +60,8 @@ const obj =  {
 };
 
 for (const key in obj) {
-  Object.entries(key).forEach(([k, v]) => console.log(`${k} : ${v}`))
+  const conf = obj[key];
+  Object.entries(conf).forEach(([k, v]) => console.log(`${k} : ${v}`))
 }
 
 export {

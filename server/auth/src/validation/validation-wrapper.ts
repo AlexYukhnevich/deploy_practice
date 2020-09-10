@@ -10,7 +10,7 @@ async (req: Request, res: Response) => {
     const validationErrors = validationResult(req);  
   
     if (!validationErrors.isEmpty()) {
-        const errorMessages = validationErrors.array().map(({ param, msg }) => `${param}: ${msg}`);
+        const errorMessages = validationErrors.array().map(({ param, msg }) => msg.replace('value', param));
         throw new BadRequestError(errorMessages.join(';'));
     }
 

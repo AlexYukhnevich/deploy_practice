@@ -24,7 +24,7 @@ export default {
     axios.interceptors.response.use(
       (response) => response, 
       (error) => {
-
+        
         TokenService.removeAccessToken();
 
         if (error.response.status === 401) {

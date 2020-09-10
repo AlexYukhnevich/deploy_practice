@@ -7,7 +7,7 @@ export const searchProjects = async (value: string) =>
     { 
       where: {
         search: {
-          [Op.substring]: value
+          [Op.substring]: ` ${value}`
         }
       }
     }

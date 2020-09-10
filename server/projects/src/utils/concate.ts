@@ -7,7 +7,7 @@ interface AnyDict {
 export const concate = (dictionary: AnyDict) => {
   return values(dictionary).reduce((acc, val) => {
     if (val || val === 0) {
-      acc += val;
+      acc += ` ${val}`;
     }
     return acc;
   }, '');
