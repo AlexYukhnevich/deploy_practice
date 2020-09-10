@@ -51,6 +51,18 @@ const jwtConfig = {
   activateKey: process.env.JWT_ACC_ACTIVATE,
 };
 
+const obj =  {
+  appConfig,
+  dependenciesConfig,
+  mailConfig,
+  dbConfig,
+  jwtConfig,
+};
+
+for (const key in obj) {
+  Object.entries(key).forEach(([k, v]) => console.log(`${k} : ${v}`))
+}
+
 export {
   appConfig,
   dependenciesConfig,

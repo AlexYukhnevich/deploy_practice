@@ -4,9 +4,6 @@ services:
     image: postgres:12
     env_file: 
       - database.env
-      # POSTGRES_USER: postgres
-      # POSTGRES_PASSWORD: W0rkW1thSQL
-      # POSTGRES_DB: prod_db
     volumes: 
       - ./db_data:/var/lib/postgresql/data
     ports:
@@ -24,9 +21,6 @@ services:
     build: "./server/gateway"
     ports: 
       - "8080:8080"
-    depends_on: 
-      - auth
-      - projects
   auth:
     build: "./server/auth"
     restart: always
@@ -34,33 +28,13 @@ services:
       - "4000:4000"
     depends_on: 
       - db
-      - gateway
     env_file: 
       - './server/auth/.env'
-    # environment: 
-    #   - JWT_SECRET=test_task
-    #   - JWT_SECRET_REFRESH=token_refresh
-    #   - JWT_EXPIRES_IN=3600000
-    #   - JWT_REFRESH_EXPIRES_IN=864000000
-    #   - JWT_ACC_ACTIVATE=activate_account
-    #   - MAIL_NAME=Test Task Notifications
-    #   - MAIL_SECRET=secret-mail
-    #   - SMTP_USERNAME=test.acc0unt.sendmail@gmail.com
-    #   - SMTP_PASSWORD=test_pass_for_sending
-    #   - SMTP_HOST=smtp.gmail.com
-    #   - SMTP_PORT=587
   projects:
     build: "./server/projects"
     ports: 
       - "4001:4001"
     env_file:
       - './server/projects/.env'
-    # environment:
-    #   - JWT_SECRET=test_task
-    #   - JWT_SECRET_REFRESH=token_refresh
-    #   - JWT_EXPIRES_IN=60400000
-    #   - JWT_REFRESH_EXPIRES_IN=864000000
     depends_on: 
       - db
-      - auth
-      - gateway
