@@ -12,7 +12,7 @@ import { FETCH_TIMEOUT } from  '../../constants';
 
 const CrmHeader = Header(LogoutPageNav);
 
-const CrmPage = ({ loadingData, fetchProjects, setError }) => {
+const CrmPage = ({ loadingData, fetchProjects, setError, destroySession }) => {
 
   useEffect(() => {
     loadingData(true);
@@ -33,7 +33,7 @@ const CrmPage = ({ loadingData, fetchProjects, setError }) => {
 
   return (
     <ProjectApiContext.Provider value={projectApi}>
-      <CrmHeader />
+      <CrmHeader destroySession={destroySession}/>
       <Content>
         <ProjectsHeader />
         <CrmProjectPanel />
@@ -45,6 +45,7 @@ const CrmPage = ({ loadingData, fetchProjects, setError }) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  destroySession: () => dispatch(dataActions.destroySession()),
   loadingData: (bool) => dispatch(dataActions.loadingAction(bool)),
   fetchProjects: (response) => {
     dispatch(authActions.setUser(response.user));

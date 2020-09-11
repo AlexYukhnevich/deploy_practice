@@ -10,17 +10,16 @@ services:
       - "5432:5432"
     restart: always 
   client:
-    build: 
-      dockerfile: Dockerfile
-      context: ./client
-    environment:
-      IP_ADDRESS: "79.143.29.80"
+    build: ./client
     ports: 
       - "80:80"
   gateway: 
     build: "./server/gateway"
     ports: 
       - "8080:8080"
+    links:
+      - auth
+      - projects
   auth:
     build: "./server/auth"
     restart: always
@@ -28,13 +27,17 @@ services:
       - "4000:4000"
     depends_on: 
       - db
+    links: 
+      - db
     env_file: 
-      - './server/auth/.env'
+      - ./server/auth/.env
   projects:
     build: "./server/projects"
     ports: 
       - "4001:4001"
     env_file:
-      - './server/projects/.env'
+      - ./server/projects/.env
     depends_on: 
+      - db
+    links: 
       - db

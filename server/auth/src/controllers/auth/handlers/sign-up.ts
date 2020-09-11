@@ -19,7 +19,7 @@ export const signUp = async (req: Request, res: Response) => {
   if (user) {
     throw new BadRequestError(userErrors.existsData);
   }
-
+  
   if (email !== senderMail) {
     const hashedPassword = await getHashedEntity(password, saltRounds);  
     const activateToken = await signToken({ 

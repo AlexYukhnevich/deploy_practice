@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node ./build/server.js && NODE_ENV=production",
+    "start": "node ./build/server.js",
     "dev": "cross-env NODE_ENV=development tsc-watch --onSuccess \"node ./build/server.js\"",
-    "build": "tsc"
+    "build": "cross-env NODE_ENV=production tsc"
   },
   "dependencies": {
     "axios": "^0.20.0",

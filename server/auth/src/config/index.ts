@@ -7,7 +7,6 @@ const appConfig = {
   clientHost: process.env.CLIENT_HOST,
   serverHost: process.env.SERVER_HOST,
   gatewayHost: process.env.GATEWAY_HOST,
-  userServiceHost: `${process.env.MACHINE_HOST}:${process.env.USER_PORT}`,
 };
 
 const dependenciesConfig = {
@@ -23,35 +22,17 @@ const mailConfig = {
 };
 
 const dbConfig = {
-  dbProtocol: process.env.DB_PROTOCOL,
-  dbHost: process.env.DB_HOST,
-  dbPort: process.env.DB_PORT,
-  dbLogin: process.env.DB_LOGIN,
-  dbName: process.env.DB_NAME,
-  dbPassword: process.env.DB_PASSWORD,
+  dbUrl: process.env.DB_URL,
   dialect: process.env.DB_DIALECT,
-  environment: {
-    development: {
-      url: process.env.DB_DEV,
-    },
-    test: {
-      url: process.env.DB_TEST,
-    },
-    production: {
-      url: process.env.DB_PROD,
-    },
-  }
 };
 
 const jwtConfig = {
   appSecret: process.env.JWT_SECRET,
-  refreshSecret: process.env.JWT_SECRET_REFRESH,
   expiresIn: String(process.env.JWT_EXPIRES_IN),
-  refreshExpiresIn: String(process.env.JWT_REFRESH_EXPIRES_IN), 
   activateKey: process.env.JWT_ACC_ACTIVATE,
 };
 
-const obj =  {
+const config = {
   appConfig,
   dependenciesConfig,
   mailConfig,
@@ -59,9 +40,8 @@ const obj =  {
   jwtConfig,
 };
 
-for (const key in obj) {
-  const conf = obj[key];
-  Object.entries(conf).forEach(([k, v]) => console.log(`${k} : ${v}`))
+for (const key in config) {
+  Object.entries(config[key]).forEach(([k, v]) => console.log(`${k} : ${v}`))
 }
 
 export {
@@ -70,4 +50,4 @@ export {
   mailConfig,
   dbConfig,
   jwtConfig,
-};
+}

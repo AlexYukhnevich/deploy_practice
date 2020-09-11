@@ -36,7 +36,7 @@ export const SPECIAL_CHARACTERS = [
 
 const config = {
   dev:`http://localhost:8080`,
-  prod: `http://:79.143.29.80:8080`,
+  prod: `http://172.17.0.45:8080`,
 }
 
 // allowed column fields for sorting
@@ -55,6 +55,7 @@ export const ALLOWED_VALUES_FOR_SORT = [
 // backend endpoint
 // export const BASE_URL = 'http://localhost:8080';
 export const BASE_URL = process.env.NODE_ENV === 'prod' ? config.prod : config.dev;
+
 // prefixers
 export const API = '/api';
 export const PROJECT_PREFIX = '/projects';

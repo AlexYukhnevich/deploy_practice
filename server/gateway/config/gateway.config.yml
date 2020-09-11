@@ -2,19 +2,19 @@ http:
   port: 8080
 admin:
   port: 9876
-  host: '79.143.29.80'
+  host: 'localhost'
 apiEndpoints:
   auth:
-    host: '79.143.29.80'
+    host: '*'
     path: '/auth*'
   projects:
-    host: '79.143.29.80'
+    host: '*'
     path: '/api*'
 serviceEndpoints:
   auth:
-    url: 'http://79.143.29.80:4000'
+    url: 'http://auth:4000'
   projects:
-    url: 'http://79.143.29.80:4001'
+    url: 'http://projects:4001'
 policies:
   - cors
   - log

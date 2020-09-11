@@ -2,10 +2,11 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import authApi from '../../../services/auth';
 
-const LogoutPageNav = ({ history }) => {
+const LogoutPageNav = ({ history, destroySession }) => {
 
   const onLogout = async () => {
     authApi.logOut();
+    destroySession();
     history.push('/login');
   }
   
